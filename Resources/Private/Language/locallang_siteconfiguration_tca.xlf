@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+    <file t3:id="1563367767" source-language="en" datatype="plaintext" original="messages" date="2019-07-17T14:49:00Z" product-name="backend">
+        <header/>
+        <body>
+            <trans-unit id="site.oauth2TokenEndpoint.label">
+                <source>OAuth2 Token Endpoint</source>
+            </trans-unit>
+            <trans-unit id="site.oauth2TokenEndpoint.description">
+                <source>The token endpoint is used by the client to obtain an access token by
+                    presenting its authorization grant or refresh token.  The token
+                    endpoint is used with every authorization grant except for the
+                    implicit grant type (since an access token is issued directly).
+                </source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
