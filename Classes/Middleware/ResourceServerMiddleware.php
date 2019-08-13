@@ -41,7 +41,6 @@ class ResourceServerMiddleware implements MiddlewareInterface
                 ->generateHttpResponse(new Response());
         }
 
-
         return $handler->handle($request);
     }
 
