@@ -55,7 +55,7 @@ class AuthorizationServerMiddleware implements MiddlewareInterface
 
         $server->enableGrantType(
             new \League\OAuth2\Server\Grant\ClientCredentialsGrant(),
-            new \DateInterval('PT1H') // access tokens will expire after 1 hour
+            new \DateInterval('P1D') // access tokens will expire after 1 hour
         );
 
         return $server;
