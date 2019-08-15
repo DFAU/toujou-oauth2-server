@@ -43,14 +43,20 @@ class AuthorizationServerMiddleware implements MiddlewareInterface
 
     protected function createServer(): AuthorizationServer
     {
+        if (!getenv('TYPO3_OAUTH2_PRIVATE_KEY')) {
+            throw new \InvalidArgumentException('The environment variable "TYPO3_OAUTH2_PRIVATE_KEY" is empty.', 1565882899);
+        }
+        if (!getenv('TYPO3_OAUTH2_ENCRYPTION_KEY')) {
+            throw new \InvalidArgumentException('The environment variable "TYPO3_OAUTH2_ENCRYPTION_KEY" is empty.', 1565883415);
+        }
         /** @var AuthorizationServer $server */
         $server = GeneralUtility::makeInstance(
             AuthorizationServer::class,
             GeneralUtility::makeInstance(Typo3ClientRepository::class),
             GeneralUtility::makeInstance(Typo3AccessTokenRepository::class),
             GeneralUtility::makeInstance(Typo3ScopeRepository::class),
-            new CryptKey('file:///Users/tmaroschik/Sites/toujou/private.key', 'password'),
-            Key::loadFromAsciiSafeString('def000009a48120186ffeb187910ae37c21cc56ef2ef6cfd24b735d47a8cd0b115f53fa5ed47b6ffc39d0f4074ee789b5cec9999471b69b3f0aa5d1244fd688a710e3af8')
+            new CryptKey(getenv('TYPO3_OAUTH2_PRIVATE_KEY')),
+            Key::loadFromAsciiSafeString(getenv('TYPO3_OAUTH2_ENCRYPTION_KEY'))
         );
 
         $server->enableGrantType(

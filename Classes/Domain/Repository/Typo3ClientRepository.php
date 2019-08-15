@@ -65,10 +65,10 @@ class Typo3ClientRepository implements ClientRepositoryInterface
             ->from(static::TABLE_NAME)
             ->where($this->queryBuilder->expr()->eq(
                 'identifier',
-                $this->queryBuilder->quote($clientIdentifier)
+                $this->queryBuilder->createNamedParameter($clientIdentifier)
             ))
             ->setMaxResults(1)
             ->execute()
-            ->fetch();
+            ->fetch() ?: null;
     }
 }

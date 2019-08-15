@@ -46,11 +46,14 @@ class ResourceServerMiddleware implements MiddlewareInterface
 
     protected function createServer(): ResourceServer
     {
+        if (!getenv('TYPO3_OAUTH2_PUBLIC_KEY')) {
+            throw new \InvalidArgumentException('The environment variable "TYPO3_OAUTH2_PUBLIC_KEY" is empty.', 1565883420);
+        }
         /** @var ResourceServer $server */
         $server = GeneralUtility::makeInstance(
             ResourceServer::class,
             GeneralUtility::makeInstance(Typo3AccessTokenRepository::class),
-            new CryptKey('file:///Users/tmaroschik/Sites/toujou/public.key')
+            new CryptKey(getenv('TYPO3_OAUTH2_PUBLIC_KEY'))
         );
 
 
