@@ -2,7 +2,7 @@
     "name": "dfau/toujou-oauth2-server",
     "description": "A TYPO3 Oauth2 Client Credentials Server, that logs in Backend Users",
     "type": "typo3-cms-extension",
-    "license": "GPLv3",
+    "license": "GPL-3.0-or-later",
     "replace": {
         "toujou_oauth2_server": "self.version"
     },
