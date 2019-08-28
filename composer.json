@@ -1,6 +1,6 @@
 {
     "name": "dfau/toujou-oauth2-server",
-    "description": "Oauth2 Server Extension for toujou",
+    "description": "A TYPO3 Oauth2 Client Credentials Server, that logs in Backend Users",
     "type": "typo3-cms-extension",
     "license": "GPLv3",
     "replace": {
