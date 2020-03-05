@@ -8,6 +8,7 @@ $GLOBALS['SiteConfiguration']['site']['columns']['oauth2TokenEndpoint'] = [
     'config' => [
         'type' => 'input',
         'eval' => 'trim',
+        'default' => '_api/token',
         'valuePicker' => [
             'items' => [
                 ['_api/token', '_api/token'],
