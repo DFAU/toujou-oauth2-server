@@ -3,9 +3,6 @@
     "description": "A TYPO3 Oauth2 Client Credentials Server, that logs in Backend Users",
     "type": "typo3-cms-extension",
     "license": "GPL-3.0-or-later",
-    "replace": {
-        "toujou_oauth2_server": "self.version"
-    },
     "require": {
         "php": ">=7.2 <7.5",
         "typo3/cms-core": "^9.5",
@@ -25,6 +22,11 @@
     "autoload": {
         "psr-4": {
             "DFAU\\ToujouOauth2Server\\": "Classes"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "toujou_oauth2_server"
         }
     }
 }
