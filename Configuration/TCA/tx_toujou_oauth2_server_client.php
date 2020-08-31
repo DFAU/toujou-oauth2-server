@@ -20,9 +20,6 @@ return [
         ],
         'searchFields' => 'name'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'name,identifier,redirect_uris,description'
-    ],
     'columns' => [
         'name' => [
             'label' => 'LLL:EXT:toujou_oauth2_server/Resources/Private/Language/locallang_client_tca.xlf:client.name.label',
