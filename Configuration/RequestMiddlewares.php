@@ -1,9 +1,5 @@
 <?php
 
-use DFAU\ToujouApi\Middleware\JsonApiPayload;
-use DFAU\ToujouApi\Middleware\ParsedBodyReset;
-use DFAU\ToujouApi\Middleware\Router;
-
 return [
     'frontend' => [
         'middlewares/payload/json-payload' => [
