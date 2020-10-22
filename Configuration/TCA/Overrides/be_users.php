@@ -1,11 +1,9 @@
 <?php
 
-
 // And add it to showitem
 if (strpos($GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'], '--div--;API,') === false) {
     $GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ', --div--;API';
 }
-
 
 $GLOBALS['TCA']['be_users']['columns']['oauth2_clients'] = [
     'exclude' => 1,
@@ -30,6 +28,6 @@ $GLOBALS['TCA']['be_users']['columns']['oauth2_clients'] = [
 ];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-  'be_users',
+    'be_users',
     '--div--;LLL:EXT:toujou_oauth2_server/Resources/Private/Language/locallang_be_users_tca.xlf:be_users.oauth2Tab,oauth2_clients'
 );

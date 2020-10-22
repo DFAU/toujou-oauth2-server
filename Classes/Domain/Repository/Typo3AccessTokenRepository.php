@@ -1,8 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Domain\Repository;
-
 
 use DFAU\ToujouOauth2Server\Domain\Entity\Typo3AccessToken;
 use DFAU\ToujouOauth2Server\Domain\Entity\UserRelatedClientEntityInterface;
@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
 {
-
     const TABLE_NAME = 'tx_toujou_oauth2_server_access_token';
 
     /**

@@ -1,12 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Domain\Repository;
 
-
 use DFAU\ToujouOauth2Server\Authentication\Oauth2BackendUserAuthentication;
 use DFAU\ToujouOauth2Server\Domain\Entity\Typo3BackendUser;
-use DFAU\ToujouOauth2Server\Domain\Entity\Typo3Client;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;

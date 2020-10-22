@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Domain\Repository;
 
@@ -11,7 +12,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Typo3ClientRepository implements ClientRepositoryInterface
 {
-
     const TABLE_NAME = 'tx_toujou_oauth2_server_client';
 
     /**
