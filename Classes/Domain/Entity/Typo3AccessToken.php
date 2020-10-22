@@ -1,8 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Domain\Entity;
-
 
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
@@ -12,7 +12,9 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 
 class Typo3AccessToken implements AccessTokenEntityInterface
 {
-    use AccessTokenTrait, EntityTrait, TokenEntityTrait;
+    use AccessTokenTrait;
+    use EntityTrait;
+    use TokenEntityTrait;
 
     public function __construct(ClientEntityInterface $clientEntity, array $scopes = [], $userIdentifier = null)
     {
@@ -20,5 +22,4 @@ class Typo3AccessToken implements AccessTokenEntityInterface
         $scopes && array_map([$this, 'addScope'], $scopes);
         $userIdentifier && $this->setUserIdentifier($userIdentifier);
     }
-
 }

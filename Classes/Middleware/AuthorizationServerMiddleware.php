@@ -1,8 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Middleware;
-
 
 use Defuse\Crypto\Key;
 use DFAU\ToujouOauth2Server\Domain\Repository\Typo3AccessTokenRepository;

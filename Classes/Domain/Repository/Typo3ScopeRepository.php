@@ -1,8 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Domain\Repository;
-
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
@@ -31,7 +31,7 @@ class Typo3ScopeRepository implements ScopeRepositoryInterface
      * @param ScopeEntityInterface[] $scopes
      * @param string $grantType
      * @param ClientEntityInterface $clientEntity
-     * @param null|string $userIdentifier
+     * @param string|null $userIdentifier
      *
      * @return ScopeEntityInterface[]
      */

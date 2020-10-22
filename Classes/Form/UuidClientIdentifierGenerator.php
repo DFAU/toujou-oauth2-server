@@ -1,11 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Form;
 
-
-use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use Ramsey\Uuid\Uuid;
+use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 class UuidClientIdentifierGenerator implements FormDataProviderInterface
 {

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Authentication;
 
@@ -28,7 +30,6 @@ class Oauth2BackendUserAuthentication extends \TYPO3\CMS\Core\Authentication\Bac
         parent::__construct();
     }
 
-
     public function setLoginData(string $clientIdentifier, string $clientSecret, string $clientLoginType)
     {
         $this->clientIdentifier = $clientIdentifier;
@@ -51,5 +52,4 @@ class Oauth2BackendUserAuthentication extends \TYPO3\CMS\Core\Authentication\Bac
 
         return array_map('trim', $loginData);
     }
-
 }

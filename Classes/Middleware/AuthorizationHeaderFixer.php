@@ -1,8 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Middleware;
-
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -24,8 +24,8 @@ class AuthorizationHeaderFixer implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (!$request->hasHeader('authorization') && !empty($_SERVER["REDIRECT_HTTP_AUTHORIZATION"])) {
-            $request = $request->withAddedHeader('Authorization', $_SERVER["REDIRECT_HTTP_AUTHORIZATION"]);
+        if (!$request->hasHeader('authorization') && !empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+            $request = $request->withAddedHeader('Authorization', $_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
         }
         return $handler->handle($request);
     }

@@ -1,6 +1,5 @@
 <?php
 
-
 // Configure a new simple required input field to site
 $GLOBALS['SiteConfiguration']['site']['columns']['oauth2TokenEndpoint'] = [
     'label' => 'LLL:EXT:toujou_oauth2_server/Resources/Private/Language/locallang_siteconfiguration_tca.xlf:site.oauth2TokenEndpoint.label',

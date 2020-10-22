@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Middleware;
 
@@ -55,7 +56,6 @@ class ResourceServerMiddleware implements MiddlewareInterface
             GeneralUtility::makeInstance(Typo3AccessTokenRepository::class),
             new CryptKey(getenv('TYPO3_OAUTH2_PUBLIC_KEY'))
         );
-
 
         return $server;
     }
