@@ -12,7 +12,9 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'tmaroschik@dfau.de',
     'author_company' => 'DFAU',
     'constraints' => [
-        'depends' => [],
+        'depends' => [
+            'typo3' => '10.4.0 - 11.99.99'
+        ],
         'conflicts' => [],
         'suggests' => [],
     ]
