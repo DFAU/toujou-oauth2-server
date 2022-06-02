@@ -11,7 +11,7 @@
         "ramsey/uuid": "^4.2.3"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
+        "dfau/coding-standard": "^1.0.0"
     },
     "authors": [
         {
@@ -26,7 +26,18 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "toujou_oauth2_server"
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "extension-key": "toujou_oauth2_server",
+            "web-dir": ".Build/Web"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/cms-composer-installers": true,
+            "typo3/class-alias-loader": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "bin-dir": ".Build/bin",
+        "vendor-dir": ".Build/vendor"
     }
 }
