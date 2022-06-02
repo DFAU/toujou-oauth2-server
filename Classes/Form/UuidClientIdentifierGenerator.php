@@ -9,26 +9,26 @@ use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 class UuidClientIdentifierGenerator implements FormDataProviderInterface
 {
-
     /**
      * Add form data to result array
      *
      * @param array $result Initialized result array
+     *
      * @return array Result filled with more data
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
-        if ($result['command'] !== 'new') {
+        if ('new' !== $result['command']) {
             return $result;
         }
-        if (!is_array($result['databaseRow'])) {
+        if (!\is_array($result['databaseRow'])) {
             throw new \UnexpectedValueException(
                 'databaseRow of table ' . $result['tableName'] . ' is not an array',
                 1563458054
             );
         }
 
-        if ($result['tableName'] === 'tx_toujou_oauth2_server_client') {
+        if ('tx_toujou_oauth2_server_client' === $result['tableName']) {
             $result['databaseRow']['identifier'] = $result['databaseRow']['identifier'] ?: Uuid::uuid4();
         }
 

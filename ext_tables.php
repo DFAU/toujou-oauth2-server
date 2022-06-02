@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3_MODE') || die();
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\DFAU\ToujouOauth2Server\Form\UuidClientIdentifierGenerator::class] = [
     'depends' => [

@@ -19,7 +19,7 @@ class Typo3AccessToken implements AccessTokenEntityInterface
     public function __construct(ClientEntityInterface $clientEntity, array $scopes = [], $userIdentifier = null)
     {
         $this->setClient($clientEntity);
-        $scopes && array_map([$this, 'addScope'], $scopes);
+        $scopes && \array_map([$this, 'addScope'], $scopes);
         $userIdentifier && $this->setUserIdentifier($userIdentifier);
     }
 }

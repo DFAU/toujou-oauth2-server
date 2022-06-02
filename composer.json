@@ -5,7 +5,8 @@
     "license": "GPL-3.0-or-later",
     "require": {
         "php": ">=7.2 <7.5",
-        "typo3/cms-core": "^9.5 || ^10.4 || ^11.3",
+        "typo3/cms-core": "^9.5 || ^10.4",
+        "typo3/cms-backend": "^9.5 || ^10.4",
         "middlewares/payload": "^3.0.1",
         "league/oauth2-server": "^8.0.0",
         "ramsey/uuid": "^4.2.3"

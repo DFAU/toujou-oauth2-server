@@ -22,7 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ResourceServerMiddleware implements MiddlewareInterface
 {
-
     /**
      * Process an incoming server request.
      *
@@ -37,7 +36,7 @@ class ResourceServerMiddleware implements MiddlewareInterface
             $this->overrideBackendUser($request->getAttribute('oauth_user_id'));
         } catch (OAuthServerException $exception) {
             return $exception->generateHttpResponse(new Response());
-        } catch (\Exception $exception) {
+        } catch (\Throwable $exception) {
             return (new OAuthServerException($exception->getMessage(), 0, 'unknown_error', 500))
                 ->generateHttpResponse(new Response());
         }
@@ -47,14 +46,14 @@ class ResourceServerMiddleware implements MiddlewareInterface
 
     protected function createServer(): ResourceServer
     {
-        if (!getenv('TYPO3_OAUTH2_PUBLIC_KEY')) {
+        if (!\getenv('TYPO3_OAUTH2_PUBLIC_KEY')) {
             throw new \InvalidArgumentException('The environment variable "TYPO3_OAUTH2_PUBLIC_KEY" is empty.', 1565883420);
         }
         /** @var ResourceServer $server */
         $server = GeneralUtility::makeInstance(
             ResourceServer::class,
             GeneralUtility::makeInstance(Typo3AccessTokenRepository::class),
-            new CryptKey(getenv('TYPO3_OAUTH2_PUBLIC_KEY'))
+            new CryptKey(\getenv('TYPO3_OAUTH2_PUBLIC_KEY'))
         );
 
         return $server;
@@ -62,7 +61,7 @@ class ResourceServerMiddleware implements MiddlewareInterface
 
     protected function overrideBackendUser($userIdentifier): void
     {
-        if ($userIdentifier !== null && GeneralUtility::isFirstPartOfStr($userIdentifier, 'be_users_')) {
+        if (null !== $userIdentifier && GeneralUtility::isFirstPartOfStr($userIdentifier, 'be_users_')) {
             $backendUserObject = GeneralUtility::makeInstance(FrontendBackendUserAuthentication::class);
             $backendUserObject->user = $backendUserObject->getRawUserByUid(BackendUtility::splitTable_Uid($userIdentifier)[1]);
             if (!empty($backendUserObject->user['uid'])) {

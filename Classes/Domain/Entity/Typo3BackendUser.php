@@ -11,9 +11,7 @@ class Typo3BackendUser implements UserEntityInterface
 {
     use EntityTrait;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $userData;
 
     public function __construct(string $identifier, array $userData)
@@ -22,9 +20,6 @@ class Typo3BackendUser implements UserEntityInterface
         $this->userData = $userData;
     }
 
-    /**
-     * @return array
-     */
     public function getUserData(): array
     {
         return $this->userData;

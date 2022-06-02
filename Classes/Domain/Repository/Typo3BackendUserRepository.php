@@ -14,9 +14,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Typo3BackendUserRepository implements UserRepositoryInterface
 {
-    /**
-     * @var Oauth2BackendUserAuthentication
-     */
+    /** @var Oauth2BackendUserAuthentication */
     protected $backendUser;
 
     public function __construct()
@@ -25,16 +23,11 @@ class Typo3BackendUserRepository implements UserRepositoryInterface
     }
 
     /**
-     * Get a user entity.
-     *
      * @param string $username
      * @param string $password
-     * @param string $grantType The grant type used
-     * @param ClientEntityInterface $clientEntity
-     *
-     * @return UserEntityInterface|null
+     * @param string $grantType
      */
-    public function getUserEntityByUserCredentials($username, $password, $grantType, ClientEntityInterface $clientEntity)
+    public function getUserEntityByUserCredentials($username, $password, $grantType, ClientEntityInterface $clientEntity): ?UserEntityInterface
     {
         $this->backendUser->setLoginData($username, $password, LoginType::LOGIN);
         $this->backendUser->checkAuthentication();

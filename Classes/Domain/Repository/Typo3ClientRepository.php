@@ -8,20 +8,17 @@ use DFAU\ToujouOauth2Server\Domain\Entity\Typo3Client;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Typo3ClientRepository implements ClientRepositoryInterface
 {
-    const TABLE_NAME = 'tx_toujou_oauth2_server_client';
+    public const TABLE_NAME = 'tx_toujou_oauth2_server_client';
 
-    /**
-     * @var PasswordHashFactory
-     */
+    /** @var PasswordHashFactory */
     protected $hashFactory;
 
-    /**
-     * @var \TYPO3\CMS\Core\Database\Query\QueryBuilder
-     */
+    /** @var QueryBuilder */
     protected $queryBuilder;
 
     public function __construct()
@@ -30,7 +27,7 @@ class Typo3ClientRepository implements ClientRepositoryInterface
         $this->queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable(static::TABLE_NAME);
     }
 
-    public function getClientEntity($clientIdentifier)
+    public function getClientEntity($clientIdentifier): ?Typo3Client
     {
         $clientData = $this->findRawByIdentifier($clientIdentifier, ['name', 'redirect_uris', 'user_uid', 'user_table']);
 
@@ -47,11 +44,10 @@ class Typo3ClientRepository implements ClientRepositoryInterface
         return null;
     }
 
-    public function validateClient($clientIdentifier, $clientSecret, $grantType)
+    public function validateClient($clientIdentifier, $clientSecret, $grantType): bool
     {
         if ($client = $this->findRawByIdentifier($clientIdentifier, ['identifier', 'secret'])) {
-            $hash = $this->hashFactory->get($client['secret'], 'BE');
-            return $hash->checkPassword($clientSecret, $client['secret']);
+            return $this->hashFactory->get($client['secret'], 'BE')->checkPassword($clientSecret, $client['secret']);
         }
 
         return false;
