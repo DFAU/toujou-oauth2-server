@@ -6,7 +6,7 @@
     "require": {
         "php": ">=7.2 <7.5",
         "typo3/cms-core": "^9.5 || ^10.4 || ^11.3",
-        "middlewares/payload": "^2.1.1",
+        "middlewares/payload": "^3.0.1",
         "league/oauth2-server": "^8.0.0",
         "ramsey/uuid": "^4.2.3"
     },
