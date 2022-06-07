@@ -1,6 +1,6 @@
 # Toujou OAuth 2.0 Server
 
-@TODO add description
+A TYPO3 Oauth2 Client Credentials Server, that logs in Backend Users.
 
 ## Installation
 
