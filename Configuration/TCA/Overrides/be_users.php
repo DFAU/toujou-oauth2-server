@@ -1,7 +1,7 @@
 <?php
 
 // And add it to showitem
-if (strpos($GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'], '--div--;API,') === false) {
+if (false === \strpos($GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'], '--div--;API,')) {
     $GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ', --div--;API';
 }
 

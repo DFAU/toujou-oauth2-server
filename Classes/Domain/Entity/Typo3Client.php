@@ -13,9 +13,7 @@ class Typo3Client implements ClientEntityInterface, UserRelatedClientEntityInter
     use EntityTrait;
     use ClientTrait;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $userIdentifier;
 
     public function __construct($identifier, string $name, array $redirectUri, string $userIdentifier = null, bool $isConfidential = true)

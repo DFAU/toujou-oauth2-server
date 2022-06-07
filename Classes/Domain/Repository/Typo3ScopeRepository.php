@@ -10,15 +10,12 @@ use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
 
 class Typo3ScopeRepository implements ScopeRepositoryInterface
 {
-
     /**
      * Return information about a scope.
      *
      * @param string $identifier The scope identifier
-     *
-     * @return ScopeEntityInterface|null
      */
-    public function getScopeEntityByIdentifier($identifier)
+    public function getScopeEntityByIdentifier($identifier): ?ScopeEntityInterface
     {
         // TODO implement scopes
         return null;
@@ -30,12 +27,11 @@ class Typo3ScopeRepository implements ScopeRepositoryInterface
      *
      * @param ScopeEntityInterface[] $scopes
      * @param string $grantType
-     * @param ClientEntityInterface $clientEntity
      * @param string|null $userIdentifier
      *
      * @return ScopeEntityInterface[]
      */
-    public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null)
+    public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null): array
     {
         // TODO implement scopes
         return [];

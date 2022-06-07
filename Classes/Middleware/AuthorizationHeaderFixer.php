@@ -14,7 +14,6 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class AuthorizationHeaderFixer implements MiddlewareInterface
 {
-
     /**
      * Process an incoming server request.
      *

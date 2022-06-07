@@ -5,13 +5,14 @@
     "license": "GPL-3.0-or-later",
     "require": {
         "php": ">=7.2 <7.5",
-        "typo3/cms-core": "^9.5 || ^10.4 || ^11.3",
+        "typo3/cms-core": "^9.5 || ^10.4",
+        "typo3/cms-backend": "^9.5 || ^10.4",
         "middlewares/payload": "^2.1.1",
         "league/oauth2-server": "^8.0.0",
         "ramsey/uuid": "^3.8.0"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
+        "dfau/coding-standard": "^1.0.0"
     },
     "authors": [
         {
@@ -26,7 +27,18 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "toujou_oauth2_server"
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "extension-key": "toujou_oauth2_server",
+            "web-dir": ".Build/Web"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/cms-composer-installers": true,
+            "typo3/class-alias-loader": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "bin-dir": ".Build/bin",
+        "vendor-dir": ".Build/vendor"
     }
 }
