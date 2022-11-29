@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Middleware;
 
+use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use Defuse\Crypto\Key;
 use DFAU\ToujouOauth2Server\Domain\Repository\Typo3AccessTokenRepository;
 use DFAU\ToujouOauth2Server\Domain\Repository\Typo3ClientRepository;
@@ -26,7 +27,7 @@ class AuthorizationServerMiddleware implements MiddlewareInterface
         $site = $request ? $request->getAttribute('site') : null;
         $tokenEndpoint = $site instanceof Site ? \ltrim($site->getAttribute('oauth2TokenEndpoint') ?? '', '/ ') : null;
 
-        if (!empty($tokenEndpoint) && GeneralUtility::isFirstPartOfStr($request->getUri()->getPath(), '/' . $tokenEndpoint)) {
+        if (!empty($tokenEndpoint) && \str_starts_with($request->getUri()->getPath(), '/' . $tokenEndpoint)) {
             try {
                 return $this->createServer()->respondToAccessTokenRequest($request, new Response());
             } catch (OAuthServerException $exception) {
@@ -59,7 +60,7 @@ class AuthorizationServerMiddleware implements MiddlewareInterface
         );
 
         $server->enableGrantType(
-            new \League\OAuth2\Server\Grant\ClientCredentialsGrant(),
+            new ClientCredentialsGrant(),
             new \DateInterval('P1D') // access tokens will expire after 1 hour
         );
 

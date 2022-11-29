@@ -61,7 +61,7 @@ class ResourceServerMiddleware implements MiddlewareInterface
 
     protected function overrideBackendUser($userIdentifier): void
     {
-        if (null !== $userIdentifier && GeneralUtility::isFirstPartOfStr($userIdentifier, 'be_users_')) {
+        if (null !== $userIdentifier && \str_starts_with($userIdentifier, 'be_users_')) {
             $backendUserObject = GeneralUtility::makeInstance(FrontendBackendUserAuthentication::class);
             $backendUserObject->user = $backendUserObject->getRawUserByUid(BackendUtility::splitTable_Uid($userIdentifier)[1]);
             if (!empty($backendUserObject->user['uid'])) {
