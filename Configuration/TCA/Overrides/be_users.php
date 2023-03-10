@@ -1,10 +1,6 @@
 <?php
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-// And add it to showitem
-if (false === \strpos($GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'], '--div--;API,')) {
-    $GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ', --div--;API';
-}
 
 $GLOBALS['TCA']['be_users']['columns']['oauth2_clients'] = [
     'exclude' => 1,
