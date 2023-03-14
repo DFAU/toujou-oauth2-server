@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Middleware;
 
-use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use Defuse\Crypto\Key;
 use DFAU\ToujouOauth2Server\Domain\Repository\Typo3AccessTokenRepository;
 use DFAU\ToujouOauth2Server\Domain\Repository\Typo3ClientRepository;
@@ -12,6 +11,7 @@ use DFAU\ToujouOauth2Server\Domain\Repository\Typo3ScopeRepository;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

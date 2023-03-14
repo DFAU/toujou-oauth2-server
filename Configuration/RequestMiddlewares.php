@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Middlewares\JsonPayload;
 use DFAU\ToujouOauth2Server\Middleware\AuthorizationHeaderFixer;
 use DFAU\ToujouOauth2Server\Middleware\AuthorizationServerMiddleware;
+use Middlewares\JsonPayload;
 
 return [
     'frontend' => [
