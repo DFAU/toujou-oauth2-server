@@ -67,6 +67,7 @@ class ResourceServerMiddleware implements MiddlewareInterface
             if (!empty($backendUserObject->user['uid'])) {
                 $backendUserObject->loginFailure = false;
                 $backendUserObject->fetchGroupData();
+                $backendUserObject->createUserSession($backendUserObject->user);
 
                 $GLOBALS['BE_USER'] = $backendUserObject;
 
