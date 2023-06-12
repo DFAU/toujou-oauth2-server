@@ -12,7 +12,7 @@
         "ramsey/uuid": "^3.8.0"
     },
     "require-dev": {
-        "dfau/coding-standard": "1.*",
+        "dfau/coding-standard": "2.*",
         "ssch/typo3-rector": "^v1.0.5"
     },
     "authors": [
