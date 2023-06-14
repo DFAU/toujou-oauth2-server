@@ -36,7 +36,7 @@ class Typo3ClientRepository implements ClientRepositoryInterface
             return new Typo3Client(
                 $clientIdentifier,
                 $clientData['name'],
-                GeneralUtility::trimExplode("\n", $clientData['redirect_uri']),
+                GeneralUtility::trimExplode("\n", $clientData['redirect_uris']),
                 $userIdentifier
             );
         }
