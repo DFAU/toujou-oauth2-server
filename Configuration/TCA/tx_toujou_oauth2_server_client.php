@@ -68,14 +68,18 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => '
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                --palette--;;name, --palette--;;credentials, redirect_uris
-            
-        '],
+        '0' => [
+            'showitem' => '
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                    --palette--;;name, --palette--;;credentials, redirect_uris',
+        ],
     ],
     'palettes' => [
-        'name' => ['showitem' => 'name, --linebreak--, description'],
-        'credentials' => ['showitem' => 'identifier, --linebreak--, secret'],
+        'name' => [
+            'showitem' => 'name, --linebreak--, description',
+        ],
+        'credentials' => [
+            'showitem' => 'identifier, --linebreak--, secret',
+        ],
     ],
 ];
