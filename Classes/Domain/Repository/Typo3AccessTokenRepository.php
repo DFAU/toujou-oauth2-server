@@ -30,6 +30,7 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
         if (null === $userIdentifier && $clientEntity instanceof UserRelatedClientEntityInterface) {
             $userIdentifier = $clientEntity->getUserIdentifier();
         }
+
         return new Typo3AccessToken($clientEntity, $scopes, $userIdentifier);
     }
 

@@ -33,6 +33,7 @@ class Typo3ClientRepository implements ClientRepositoryInterface
 
         if ($clientData) {
             $userIdentifier = !empty($clientData['user_table']) && !empty($clientData['user_uid']) ? $clientData['user_table'] . '_' . $clientData['user_uid'] : null;
+
             return new Typo3Client(
                 $clientIdentifier,
                 $clientData['name'],
@@ -46,7 +47,8 @@ class Typo3ClientRepository implements ClientRepositoryInterface
 
     public function validateClient($clientIdentifier, $clientSecret, $grantType): bool
     {
-        if ($client = $this->findRawByIdentifier($clientIdentifier, ['identifier', 'secret'])) {
+        $client = $this->findRawByIdentifier($clientIdentifier, ['identifier', 'secret']);
+        if ($client) {
             return $this->hashFactory->get($client['secret'], 'BE')->checkPassword($clientSecret, $client['secret']);
         }
 

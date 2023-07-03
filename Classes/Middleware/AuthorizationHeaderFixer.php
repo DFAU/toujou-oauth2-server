@@ -26,6 +26,7 @@ class AuthorizationHeaderFixer implements MiddlewareInterface
         if (!$request->hasHeader('authorization') && !empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
             $request = $request->withAddedHeader('Authorization', $_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
         }
+
         return $handler->handle($request);
     }
 }
