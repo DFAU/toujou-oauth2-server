@@ -9,7 +9,7 @@
         "typo3/cms-backend": "^11.5",
         "middlewares/payload": "^3.0.1",
         "league/oauth2-server": "^8.0.0",
-        "ramsey/uuid": "^3.8.0"
+        "ramsey/uuid": "^4.7.6"
     },
     "require-dev": {
         "dfau/coding-standard": "2.*"
