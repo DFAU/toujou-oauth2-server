@@ -40,11 +40,11 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
         $this->queryBuilder
             ->resetQueryParts()
             ->insert(static::TABLE_NAME)->values([
-            'identifier' => $accessTokenEntity->getIdentifier(),
-            'client_id' => $accessTokenEntity->getClient()->getIdentifier(),
-            'expiry_date' => $accessTokenEntity->getExpiryDateTime()->format('Y-m-d h:m:s'),
-            'scopes' => \implode("\n", $accessTokenEntity->getScopes()),
-        ])->executeStatement();
+                'identifier' => $accessTokenEntity->getIdentifier(),
+                'client_id' => $accessTokenEntity->getClient()->getIdentifier(),
+                'expiry_date' => $accessTokenEntity->getExpiryDateTime()->format('Y-m-d h:m:s'),
+                'scopes' => \implode("\n", $accessTokenEntity->getScopes()),
+            ])->executeStatement();
     }
 
     public function revokeAccessToken($tokenId): void
