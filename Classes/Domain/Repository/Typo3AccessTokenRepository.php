@@ -39,13 +39,12 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
         // TODO implement UniqueTokenIdentifierConstraintViolationException
         $this->queryBuilder
             ->resetQueryParts()
-            ->insert(static::TABLE_NAME)
-            ->values([
+            ->insert(static::TABLE_NAME)->values([
                 'identifier' => $accessTokenEntity->getIdentifier(),
                 'client_id' => $accessTokenEntity->getClient()->getIdentifier(),
                 'expiry_date' => $accessTokenEntity->getExpiryDateTime()->format('Y-m-d h:m:s'),
                 'scopes' => \implode("\n", $accessTokenEntity->getScopes()),
-            ])->execute();
+            ])->executeStatement();
     }
 
     public function revokeAccessToken($tokenId): void
@@ -53,9 +52,7 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
         $this->queryBuilder
             ->resetQueryParts()
             ->update(static::TABLE_NAME)
-            ->set('revoked', \date('Y-m-d'))
-            ->where($this->queryBuilder->expr()->eq('identifier', $this->queryBuilder->quote($tokenId)))
-            ->execute();
+            ->set('revoked', \date('Y-m-d'))->where($this->queryBuilder->expr()->eq('identifier', $this->queryBuilder->quote($tokenId)))->executeStatement();
     }
 
     public function isAccessTokenRevoked($tokenId): bool
@@ -67,9 +64,6 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
             ->where(
                 $this->queryBuilder->expr()->eq('identifier', $this->queryBuilder->quote($tokenId)),
                 $this->queryBuilder->expr()->lt('revoked', 'NOW()')
-            )
-            ->setMaxResults(1)
-            ->execute()
-            ->fetch();
+            )->setMaxResults(1)->executeQuery()->fetchAssociative();
     }
 }
