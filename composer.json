@@ -1,34 +1,9 @@
 {
     "name": "dfau/toujou-oauth2-server",
-    "description": "A TYPO3 Oauth2 Client Credentials Server, that logs in Backend Users",
-    "type": "typo3-cms-extension",
-    "license": "GPL-3.0-or-later",
-    "require": {
-        "php": "^7.4 | ^8",
-        "typo3/cms-core": "^11.5 | ^12.4",
-        "typo3/cms-backend": "^11.5 | ^12.4",
-        "middlewares/payload": "^3.0.1",
-        "league/oauth2-server": "^8.0.0",
-        "ramsey/uuid": "^3.8.0"
-    },
-    "require-dev": {
-        "dfau/coding-standard": "2.*"
-    },
-    "authors": [
-        {
-            "name": "Thomas Maroschik",
-            "email": "tmaroschik@dfau.de"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "DFAU\\ToujouOauth2Server\\": "Classes"
-        }
-    },
     "extra": {
-      "branch-alias" : {
-        "dev-main" : "v12.x-dev"
-      },
+        "branch-alias": {
+            "dev-main": "v12.x-dev"
+        },
         "typo3/cms": {
             "cms-package-dir": "{$vendor-dir}/typo3/cms",
             "extension-key": "toujou_oauth2_server",
@@ -43,5 +18,30 @@
         },
         "bin-dir": ".Build/bin",
         "vendor-dir": ".Build/vendor"
+    },
+    "description": "A TYPO3 Oauth2 Client Credentials Server, that logs in Backend Users",
+    "type": "typo3-cms-extension",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "php": "^8.1",
+        "typo3/cms-core": "^12.4 || ^13.4",
+        "typo3/cms-backend": "^12.4 || ^13.4",
+        "middlewares/payload": "^3.0.1",
+        "league/oauth2-server": "^8.0.0",
+        "ramsey/uuid": "^3.8.0"
+    },
+    "require-dev": {
+        "dfau/coding-standard": "^2.2.0"
+    },
+    "authors": [
+        {
+            "name": "Thomas Maroschik",
+            "email": "tmaroschik@dfau.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DFAU\\ToujouOauth2Server\\": "Classes"
+        }
     }
 }
