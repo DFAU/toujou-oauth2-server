@@ -16,7 +16,7 @@ class Typo3Client implements ClientEntityInterface, UserRelatedClientEntityInter
     /** @var array */
     protected $userIdentifier;
 
-    public function __construct($identifier, string $name, array $redirectUri, string $userIdentifier = null, bool $isConfidential = true)
+    public function __construct($identifier, string $name, array $redirectUri, ?string $userIdentifier = null, bool $isConfidential = true)
     {
         $this->identifier = $identifier;
         $this->name = $name;
