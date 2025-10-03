@@ -24,7 +24,6 @@ class Typo3ClientRepository implements ClientRepositoryInterface
     public function __construct()
     {
         $this->hashFactory = GeneralUtility::makeInstance(PasswordHashFactory::class);
-        $this->queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable(static::TABLE_NAME);
     }
 
     public function getClientEntity($clientIdentifier): ?Typo3Client
@@ -57,13 +56,22 @@ class Typo3ClientRepository implements ClientRepositoryInterface
 
     protected function findRawByIdentifier(string $clientIdentifier, $selects = ['*']): ?array
     {
-        return $this->queryBuilder
-            ->resetQueryParts()
+        $queryBuilder = $this->createQueryBuilder();
+
+        return $queryBuilder
             ->select(...$selects)
             ->from(static::TABLE_NAME)
-            ->where($this->queryBuilder->expr()->eq(
+            ->where($queryBuilder->expr()->eq(
                 'identifier',
-                $this->queryBuilder->createNamedParameter($clientIdentifier)
-            ))->setMaxResults(1)->executeQuery()->fetchAssociative() ?: null;
+                $queryBuilder->createNamedParameter($clientIdentifier)
+            ))->setMaxResults(1)
+            ->executeQuery()
+            ->fetchAssociative() ?: null;
+    }
+
+    protected function createQueryBuilder(): QueryBuilder
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable(static::TABLE_NAME);
     }
 }

@@ -17,14 +17,6 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
 {
     public const TABLE_NAME = 'tx_toujou_oauth2_server_access_token';
 
-    /** @var QueryBuilder */
-    protected $queryBuilder;
-
-    public function __construct()
-    {
-        $this->queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable(static::TABLE_NAME);
-    }
-
     public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null)
     {
         if (null === $userIdentifier && $clientEntity instanceof UserRelatedClientEntityInterface) {
@@ -37,8 +29,7 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity): void
     {
         // TODO implement UniqueTokenIdentifierConstraintViolationException
-        $this->queryBuilder
-            ->resetQueryParts()
+        $this->createQueryBuilder()
             ->insert(static::TABLE_NAME)->values([
                 'identifier' => $accessTokenEntity->getIdentifier(),
                 'client_id' => $accessTokenEntity->getClient()->getIdentifier(),
@@ -49,21 +40,33 @@ class Typo3AccessTokenRepository implements AccessTokenRepositoryInterface
 
     public function revokeAccessToken($tokenId): void
     {
-        $this->queryBuilder
-            ->resetQueryParts()
+        $queryBuilder = $this->createQueryBuilder();
+
+        $queryBuilder
             ->update(static::TABLE_NAME)
-            ->set('revoked', \date('Y-m-d'))->where($this->queryBuilder->expr()->eq('identifier', $this->queryBuilder->quote($tokenId)))->executeStatement();
+            ->set('revoked', \date('Y-m-d'))
+            ->where($queryBuilder->expr()->eq('identifier', $queryBuilder->quote($tokenId)))
+            ->executeStatement();
     }
 
     public function isAccessTokenRevoked($tokenId): bool
     {
-        return (bool) $this->queryBuilder
-            ->resetQueryParts()
+        $queryBuilder = $this->createQueryBuilder();
+
+        return (bool) $queryBuilder
             ->select('revoked')
             ->from(static::TABLE_NAME)
             ->where(
-                $this->queryBuilder->expr()->eq('identifier', $this->queryBuilder->quote($tokenId)),
-                $this->queryBuilder->expr()->lt('revoked', 'NOW()')
-            )->setMaxResults(1)->executeQuery()->fetchAssociative();
+                $queryBuilder->expr()->eq('identifier', $queryBuilder->quote($tokenId)),
+                $queryBuilder->expr()->lt('revoked', 'NOW()')
+            )->setMaxResults(1)
+            ->executeQuery()
+            ->fetchAssociative();
+    }
+
+    protected function createQueryBuilder(): QueryBuilder
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable(static::TABLE_NAME);
     }
 }
