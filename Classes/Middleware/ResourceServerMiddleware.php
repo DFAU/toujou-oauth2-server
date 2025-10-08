@@ -71,7 +71,6 @@ class ResourceServerMiddleware implements MiddlewareInterface
 
                 $GLOBALS['BE_USER'] = $backendUserObject;
 
-                Bootstrap::initializeLanguageObject();
                 Bootstrap::loadExtTables();
 
                 // Override the backend user for this request if oauth2 authentication succeeds
