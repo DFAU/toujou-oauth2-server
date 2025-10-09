@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\UserAspect;
 use TYPO3\CMS\Core\Core\Bootstrap;
 use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ResourceServerMiddleware implements MiddlewareInterface
@@ -70,7 +71,7 @@ class ResourceServerMiddleware implements MiddlewareInterface
                 $backendUserObject->createUserSession($backendUserObject->user);
 
                 $GLOBALS['BE_USER'] = $backendUserObject;
-
+                $GLOBALS['LANG'] = GeneralUtility::makeInstance(LanguageServiceFactory::class)->createFromUserPreferences($GLOBALS['BE_USER']);
                 Bootstrap::loadExtTables();
 
                 // Override the backend user for this request if oauth2 authentication succeeds
