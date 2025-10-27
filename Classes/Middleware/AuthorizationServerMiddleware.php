@@ -25,7 +25,11 @@ class AuthorizationServerMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $site = $request ? $request->getAttribute('site') : null;
-        $tokenEndpoint = $site instanceof Site ? \ltrim($site->getAttribute('oauth2TokenEndpoint') ?? '', '/ ') : null;
+        try {
+            $tokenEndpoint = $site instanceof Site ? \ltrim($site->getAttribute('oauth2TokenEndpoint') ?? '', '/ ') : null;
+        } catch (\InvalidArgumentException) {
+            $tokenEndpoint = null;
+        }
 
         if (!empty($tokenEndpoint) && \str_starts_with($request->getUri()->getPath(), '/' . $tokenEndpoint)) {
             try {
