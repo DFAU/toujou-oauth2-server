@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DFAU\ToujouOauth2Server\Authentication;
 
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Authentication\LoginType;
 
@@ -31,7 +32,7 @@ class Oauth2BackendUserAuthentication extends BackendUserAuthentication
         $this->clientLoginType = $clientLoginType;
     }
 
-    public function getLoginFormData(): array
+    public function getLoginFormData(ServerRequestInterface $request): array
     {
         $loginData = [
             'uname' => $this->clientIdentifier,
